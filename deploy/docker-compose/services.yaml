@@ -55,6 +55,7 @@ services:
       DOWNLOAD_DEP: "false"
       REDIS_HOST: redis
       REDIS_PORT: 6379
+      GC_WEB_USER: "007"
     ports:
       - "5000:5000"
     volumes:
