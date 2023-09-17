@@ -39,6 +39,7 @@ declare -A REPO_DIR_MAP=(\
   [gamechanger-ml]="${DEPLOY_BUILD_DIR}/gamechanger-ml" \
   [gamechanger-neo4j-plugin]="${DEPLOY_BUILD_DIR}/gamechanger-neo4j-plugin" \
   [gamechanger-crawlers]="${DEPLOY_BUILD_DIR}/gamechanger-crawlers" \
+  [gamechanger-postgres]="${DEPLOY_BUILD_DIR}/gamechanger-postgres" \
 )
 
 declare -A SERVICE_VAR_DIR_MAP=(\
@@ -53,12 +54,12 @@ declare -A SERVICE_VAR_DIR_MAP=(\
 
 function compose_wrapper() (
   export NPM_AUTH_TOKEN="${NPM_AUTH_TOKEN:-}"
-  docker-compose \
+  docker compose \
     --project-directory "${REPO_DIR}" \
     --env-file "${DEPLOY_COMPOSE_DIR}/.env" \
     --file "${DEPLOY_COMPOSE_DIR}/common.yaml" \
-    --file "${DEPLOY_COMPOSE_DIR}/build.yaml" \
     --file "${DEPLOY_COMPOSE_DIR}/utils.yaml" \
+    --file "${DEPLOY_COMPOSE_DIR}/build.yaml" \
     --file "${DEPLOY_COMPOSE_DIR}/services.yaml" \
     "$@"
 )
