@@ -10,7 +10,8 @@ source "$DEPLOY_CONF"
 
 function main() {
   # start up base services
-  compose_wrapper up -d --remove-orphans -- postgres redis elasticsearch kibana s3-server
+  #compose_wrapper up -d --remove-orphans -- postgres redis elasticsearch kibana s3-server
+  compose_wrapper up -d --remove-orphans -- postgres redis s3-server
 
   # wait until base services are up
   compose_wrapper run -- _s3_server_wait_until_ready
